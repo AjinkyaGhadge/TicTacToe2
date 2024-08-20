@@ -1,0 +1,2 @@
+In this version, I tried to create the most basic TicTacToe application using WinForms. I didn't try to think too much. Just try to make it work. This is the version 1 of the application. This application version only focuses on 
+correctness and two players can play using the same app window. 

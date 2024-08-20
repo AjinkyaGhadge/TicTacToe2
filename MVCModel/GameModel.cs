@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-
-namespace TicTacToe
+﻿namespace MVCModel
 {
     public class GameModel
     {
         #region private members
-        public string player1_name { get; set; } = string.Empty;
-        public string player2_name { get; set; } = string.Empty;
-        private int player1_id { get; set; }
-        private int player2_id { get; set; }
+        public string player1Name { get; private set; }
+        public string player2Name { get; private set; }
+        public int player1ID { get; private set; }
+        public int player2ID { get; private set; }
         public int currentPlayerID { get; private set; }
-        private int number_of_turns;
         public List<List<int>> grid { get; private set; }
         #endregion
 
@@ -28,12 +20,12 @@ namespace TicTacToe
         }
 
         #region Constructors
-        public GameModel(string p1_name = "Player X",string p2_name = "Player Y")
+        public GameModel(string p1_name = "Player X", string p2_name = "Player Y")
         {
-            player1_name = p1_name; 
-            player2_name = p2_name;
-            player1_id = 1;
-            player2_id = 0;
+            player1Name = p1_name;
+            player2Name = p2_name;
+            player1ID = 1;
+            player2ID = 0;
             grid = new List<List<int>>();
 
             // Fill the grid with default values (e.g., 0)
@@ -47,12 +39,10 @@ namespace TicTacToe
                     // Add default values to each cell
                     row.Add(-1); // Replace 0 with any default value
                 }
-
                 // Add the row to the grid
                 grid.Add(row);
             }
-            number_of_turns = 0;
-            currentPlayerID = player1_id;
+            currentPlayerID = player1ID;
         }
         #endregion
 
@@ -60,25 +50,25 @@ namespace TicTacToe
 
         public void OnGridEvent(int button)
         {
-            Tuple<int,int> coordinate = GetCoordinate(button);
-            if (currentPlayerID.Equals(player1_id))
+            Tuple<int, int> coordinate = GetCoordinate(button);
+            if (currentPlayerID.Equals(player1ID))
             {
                 this.grid[coordinate.Item1][coordinate.Item2] = 1;
-                currentPlayerID = player2_id;
+                currentPlayerID = player2ID;
             }
             else
             {
                 this.grid[coordinate.Item1][coordinate.Item2] = 0;
-                currentPlayerID = player1_id;
+                currentPlayerID = player1ID;
             }
         }
 
 
 
-        public int CheckGameStatus() 
+        public int CheckGameStatus()
         {
             GameResult gameResult = CheckThreeInARow(this.grid);
-            if(gameResult == GameResult.One)
+            if (gameResult == GameResult.One)
             {
                 return 1;
             }

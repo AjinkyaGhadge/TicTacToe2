@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             GameGrid = new TableLayoutPanel();
-            gameModel = new GameModel("Ajinkya", "Nilima");
+            gameModel = new GameModel();
             button9 = new Button();
             button8 = new Button();
             button7 = new Button();
@@ -42,8 +42,15 @@
             ActionButtonGrid = new TableLayoutPanel();
             StatusLabel = new Label();
             PlayButton = new Button();
+            LowerLayout = new TableLayoutPanel();
+            Player1Label = new Label();
+            Player1Label = new Label();
+            Player2NameLabel = new Label();
+            Player1NameBox = new TextBox();
+            Player2NameBox = new TextBox();
             GameGrid.SuspendLayout();
             ActionButtonGrid.SuspendLayout();
+            LowerLayout.SuspendLayout();
             SuspendLayout();
             // 
             // GameGrid
@@ -185,7 +192,7 @@
             ActionButtonGrid.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             ActionButtonGrid.Controls.Add(StatusLabel, 0, 0);
             ActionButtonGrid.Controls.Add(PlayButton, 0, 1);
-            ActionButtonGrid.Location = new Point(12, 447);
+            ActionButtonGrid.Location = new Point(15, 429);
             ActionButtonGrid.Name = "ActionButtonGrid";
             ActionButtonGrid.RowCount = 2;
             ActionButtonGrid.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -202,6 +209,7 @@
             StatusLabel.TabIndex = 0;
             StatusLabel.Text = "Click Play to Start";
             StatusLabel.TextAlign = ContentAlignment.MiddleCenter;
+            StatusLabel.Click += StatusLabel_Click;
             // 
             // PlayButton
             // 
@@ -214,17 +222,71 @@
             PlayButton.UseVisualStyleBackColor = true;
             PlayButton.Click += PlayButton_Click;
             // 
+            // LowerLayout
+            // 
+            LowerLayout.ColumnCount = 2;
+            LowerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            LowerLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            LowerLayout.Controls.Add(Player2NameBox, 1, 1);
+            LowerLayout.Controls.Add(Player2NameLabel, 1, 0);
+            LowerLayout.Controls.Add(Player1Label, 0, 0);
+            LowerLayout.Controls.Add(Player1NameBox, 0, 1);
+            LowerLayout.Location = new Point(15, 520);
+            LowerLayout.Name = "LowerLayout";
+            LowerLayout.RowCount = 2;
+            LowerLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            LowerLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            LowerLayout.Size = new Size(400, 73);
+            LowerLayout.TabIndex = 2;
+            // 
+            // Player1Label
+            // 
+            Player1Label.Location = new Point(3, 0);
+            Player1Label.Name = "Player1Label";
+            Player1Label.Size = new Size(194, 36);
+            Player1Label.TabIndex = 0;
+            Player1Label.Text = "Enter Player 1 Name Below";
+            Player1Label.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Player2NameLabel
+            // 
+            Player2NameLabel.Location = new Point(203, 0);
+            Player2NameLabel.Name = "Player2NameLabel";
+            Player2NameLabel.Size = new Size(194, 36);
+            Player2NameLabel.TabIndex = 1;
+            Player2NameLabel.Text = "Enter Player 2 Name Below";
+            Player2NameLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // Player1NameBox
+            // 
+            Player1NameBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Player1NameBox.Location = new Point(3, 39);
+            Player1NameBox.Name = "Player1NameBox";
+            Player1NameBox.Size = new Size(194, 29);
+            Player1NameBox.TabIndex = 2;
+            // 
+            // Player2NameBox
+            // 
+            Player2NameBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Player2NameBox.Location = new Point(203, 39);
+            Player2NameBox.Name = "Player2NameBox";
+            Player2NameBox.Size = new Size(194, 29);
+            Player2NameBox.TabIndex = 3;
+            // 
             // GameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(430, 532);
+            ClientSize = new Size(436, 596);
+            Controls.Add(LowerLayout);
             Controls.Add(ActionButtonGrid);
             Controls.Add(GameGrid);
             Name = "GameForm";
             Text = "TicTacToe";
             GameGrid.ResumeLayout(false);
             ActionButtonGrid.ResumeLayout(false);
+            LowerLayout.ResumeLayout(false);
+            LowerLayout.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -244,5 +306,10 @@
         private Button button2;
         private Button button1;
         private GameModel gameModel;
+        private TableLayoutPanel LowerLayout;
+        private TextBox Player2NameBox;
+        private Label Player2NameLabel;
+        private Label Player1Label;
+        private TextBox Player1NameBox;
     }
 }
